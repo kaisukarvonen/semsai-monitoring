@@ -1,1 +1,6 @@
-# semsai-monitoring
+# Semsai Monitoring
+
+
+```npm i```
+
+```npm start```
