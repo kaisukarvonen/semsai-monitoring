@@ -10,7 +10,7 @@ const ButtonContainer = styled.div`
 `;
 const ActionButtons = ({ previousProps, nextProps }) => (
   <ButtonContainer>
-    <SecondaryButton variant="outlined" color="primary">
+    <SecondaryButton variant="outlined" color="primary" {...previousProps}>
       Back
     </SecondaryButton>
     <Button variant="contained" color="primary" {...nextProps}>

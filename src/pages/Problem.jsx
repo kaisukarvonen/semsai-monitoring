@@ -3,10 +3,10 @@ import ProgressBar from "../components/ProgressBar";
 import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
 import { Button, TextField, InputAdornment } from "@material-ui/core";
-import { KeyboardVoice } from "@material-ui/icons";
 import SecondaryButton from "../components/SecondaryButton";
+import Input from "../components/Input";
 
-const violations = [
+const problems = [
   "Child labor",
   "Overtime working",
   "Missing safety gear",
@@ -14,24 +14,19 @@ const violations = [
   "Other"
 ];
 
-const Violations = styled.div`
+const Problems = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1rem 0;
 `;
 
-const ViolationItem = styled.div`
+const ProblemItem = styled.div`
   margin: 0.4rem 0;
   width: 50%;
   button {
     width: 100%;
   }
-`;
-
-const Label = styled.span`
-  font-size: 0.9rem;
-  padding-left: 8px;
 `;
 
 const Container = styled.div`
@@ -41,11 +36,11 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const Violation = () => {
-  const [violation, setViolation] = useState({});
+const Problem = () => {
+  const [problem, setProblem] = useState({});
 
-  const updateViolation = (key, val) => {
-    setViolation({ ...violation, [key]: val });
+  const updateProblem = (key, val) => {
+    setProblem({ ...problem, [key]: val });
   };
   return (
     <>
@@ -57,46 +52,34 @@ const Violation = () => {
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris
           </div>
-          <Violations>
-            {violations.map(v => (
-              <ViolationItem key={v}>
+          <Problems>
+            {problems.map(v => (
+              <ProblemItem key={v}>
                 <SecondaryButton
-                  variant={violation.name === v ? "contained" : "outlined"}
+                  variant={problem.name === v ? "contained" : "outlined"}
                   color="primary"
                   size="small"
-                  onClick={() => updateViolation("name", v)}
+                  onClick={() => updateProblem("name", v)}
                 >
                   {v}
                 </SecondaryButton>
-              </ViolationItem>
+              </ProblemItem>
             ))}
-          </Violations>
-          {violation.name && (
-            <>
-              Please tell what has happened
-              <TextField
-                fullWidth
-                id="filled-basic"
-                label="What happened"
-                variant="filled"
-                multiline
-                value={violation.info}
-                onChange={e => updateViolation("info", e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <KeyboardVoice />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </>
+          </Problems>
+          {problem.name && (
+            <Input
+              label="Please tell what has happened"
+              multiline
+              placeholder="text"
+              value={problem.info}
+              onChange={e => updateProblem("info", e.target.value)}
+            />
           )}
         </div>
         <ActionButtons
           previousProps={{ disabled: true }}
           nextProps={{
-            disabled: violation.name === "Other" && !violation.info
+            disabled: problem.name === "Other" && !problem.info
           }}
         />
       </Container>
@@ -104,4 +87,4 @@ const Violation = () => {
   );
 };
 
-export default Violation;
+export default Problem;

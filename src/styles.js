@@ -4,8 +4,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 export const theme = createMuiTheme({
   palette: {
     primary: { main: "#2104D6" },
-    secondary: { main: "#2104D6" },
-    text: { main: "#222", secondary: "#fff" }
+    secondary: { main: "rgba(252, 195, 50, 0.77)" },
+    text: { main: "#222", secondary: "#fff" },
+    action: { active: "#fff" }
   },
   typography: {
     fontFamily: ["Roboto", "sans-serif"].join(",")
@@ -21,8 +22,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.typography.fontFamily};
     font-size: 0.875rem;
   }
-
+  
   #root {
     height: 100%;
+  }
+
+  * { 
+    box-sizing: border-box
   }
 `;

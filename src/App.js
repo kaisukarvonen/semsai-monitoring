@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Violation from "./pages/Violation";
+import Problem from "./pages/Problem";
 import styled from "styled-components";
 import { theme, GlobalStyle } from "./styles";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@material-ui/styles";
 import { ThemeProvider } from "styled-components";
 import { Typography } from "@material-ui/core";
+import { Menu, Close, Help } from "@material-ui/icons";
 
 const Header = styled.div`
   display: flex;
@@ -25,10 +26,14 @@ const RouteContainer = styled.div`
 `;
 
 const AppContainer = styled.div`
-  background-color: #f2f0ef;
+  background: linear-gradient(158.35deg, #ffffff 2.73%, #f3eee4 98.97%), #fafaf8;
   height: 100%;
   font-size: 15px;
 `;
+
+const StyledClose = styled(Close)`
+  margin-left: 6px;
+`
 
 const App = () => {
   return (
@@ -40,18 +45,19 @@ const App = () => {
             <AppContainer>
               <Router>
                 <Header>
-                  <div>icon</div>
-                  {/* <Icon name="bars" size="large" /> */}
+                  <Menu color="action" />
                   <Typography variant="h6" color="textSecondary">
                     Semsai Monitoring
                   </Typography>
-                  <div>icon</div>
-                  {/* <Icon circular bordered name="help" /> */}
+                  <div>
+                    <Help color="secondary" />
+                    <StyledClose color="secondary" />
+                  </div>
                 </Header>
                 <RouteContainer>
                   <Switch>
                     <Route exact path="/">
-                      <Violation />
+                      <Problem />
                     </Route>
                   </Switch>
                 </RouteContainer>
