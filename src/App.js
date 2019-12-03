@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Violation from "./pages/Violation";
 import WorkersAffected from "./pages/WorkersAffected";
 import Problem from "./pages/Problem";
 import styled from "styled-components";
