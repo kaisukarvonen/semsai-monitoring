@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/ProgressBar";
-import { Button, Form, TextArea } from "semantic-ui-react";
 import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
+import { Button, TextField, InputAdornment } from "@material-ui/core";
+import { KeyboardVoice } from "@material-ui/icons";
+import SecondaryButton from "../components/SecondaryButton";
 
 const violations = [
   "Child labor",
@@ -58,27 +60,37 @@ const Violation = () => {
           <Violations>
             {violations.map(v => (
               <ViolationItem key={v}>
-                <Button
-                  basic={violation.name !== v}
-                  size="mini"
-                  color="black"
-                  compact
+                <SecondaryButton
+                  variant={violation.name === v ? "contained" : "outlined"}
+                  color="primary"
+                  size="small"
                   onClick={() => updateViolation("name", v)}
                 >
                   {v}
-                </Button>
+                </SecondaryButton>
               </ViolationItem>
             ))}
           </Violations>
           {violation.name && (
-            <Form>
-              <Label>Do you want to elaborate more?</Label>
-              <TextArea
-                rows={2}
+            <>
+              Please tell what has happened
+              <TextField
+                fullWidth
+                id="filled-basic"
+                label="What happened"
+                variant="filled"
+                multiline
                 value={violation.info}
-                onChange={(e, { value }) => updateViolation("info", value)}
+                onChange={e => updateViolation("info", e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <KeyboardVoice />
+                    </InputAdornment>
+                  )
+                }}
               />
-            </Form>
+            </>
           )}
         </div>
         <ActionButtons

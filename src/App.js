@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Header as SemanticHeader, Icon } from "semantic-ui-react";
 import Violation from "./pages/Violation";
-import "semantic-ui-css/semantic.min.css";
 import styled from "styled-components";
+import { theme, GlobalStyle } from "./styles";
+import {
+  ThemeProvider as MaterialTheme,
+  StylesProvider
+} from "@material-ui/styles";
+import { ThemeProvider } from "styled-components";
+import { Typography } from "@material-ui/core";
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0.7rem;
-  background-color: #abcdef;
+  background-color: ${({ theme }) => theme.palette.primary.main};
   height: 50px;
 `;
 
@@ -27,22 +32,35 @@ const AppContainer = styled.div`
 
 const App = () => {
   return (
-    <AppContainer>
-      <Router>
-        <Header>
-          <Icon circular bordered name="help" />
-          <SemanticHeader as="h3">Semsai Monitoring</SemanticHeader>
-          <Icon name="bars" size="large" />
-        </Header>
-        <RouteContainer>
-          <Switch>
-            <Route exact path="/">
-              <Violation />
-            </Route>
-          </Switch>
-        </RouteContainer>
-      </Router>
-    </AppContainer>
+    <StylesProvider injectFirst>
+      <MaterialTheme theme={theme}>
+        <ThemeProvider theme={theme}>
+          <>
+            <GlobalStyle />
+            <AppContainer>
+              <Router>
+                <Header>
+                  <div>icon</div>
+                  {/* <Icon name="bars" size="large" /> */}
+                  <Typography variant="h6" color="textSecondary">
+                    Semsai Monitoring
+                  </Typography>
+                  <div>icon</div>
+                  {/* <Icon circular bordered name="help" /> */}
+                </Header>
+                <RouteContainer>
+                  <Switch>
+                    <Route exact path="/">
+                      <Violation />
+                    </Route>
+                  </Switch>
+                </RouteContainer>
+              </Router>
+            </AppContainer>
+          </>
+        </ThemeProvider>
+      </MaterialTheme>
+    </StylesProvider>
   );
 };
 

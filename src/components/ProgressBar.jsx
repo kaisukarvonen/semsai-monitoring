@@ -1,8 +1,5 @@
 import React from "react";
-import { Progress } from "semantic-ui-react";
 
-const ProgressBar = ({ step }) => (
-  <Progress value={step} total="5" progress="ratio" />
-);
+const ProgressBar = ({ step }) => <div>new progress bar</div>;
 
 export default ProgressBar;
