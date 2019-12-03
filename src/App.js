@@ -72,6 +72,9 @@ const App = () => {
                       <Route exact path="/">
                         <Problem />
                       </Route>
+                      <Route exact path="/workers-affected">
+                        <WorkersAffected />
+                      </Route>
                     </Switch>
                   </RouteContainer>
                 </Router>

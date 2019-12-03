@@ -60,7 +60,7 @@ const ProgressBar = ({ donePages, active }) => {
     <Container>
       <Line />
       {pages.map((page, i) => (
-        <PageContainer>
+        <PageContainer key={page}>
           <Page active={active === page || pageIsDone(page)}>
             {pageIsDone(page) ? <Done color="action" /> : `${i + 1}`}
           </Page>

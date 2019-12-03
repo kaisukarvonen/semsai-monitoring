@@ -8,9 +8,7 @@ import SecondaryButton from "../components/SecondaryButton";
 
 const WorkersAffected = () => {
   return (
-    <>
-      Plaa plaa, temporary thingy ma bob.
-    </>
+      <p>Plaa plaa, temporary thingy ma bob.</p>
   );
 };
 
