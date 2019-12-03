@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ProgressBar from "../components/ProgressBar";
 import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
-import { Button, TextField, InputAdornment } from "@material-ui/core";
 import SecondaryButton from "../components/SecondaryButton";
 import Input from "../components/Input";
 
@@ -46,7 +45,7 @@ const Problem = () => {
     <>
       <Container>
         <div>
-          <ProgressBar step="1" />
+          <ProgressBar active="Problem" />
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

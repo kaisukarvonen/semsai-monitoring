@@ -33,7 +33,15 @@ const AppContainer = styled.div`
 
 const StyledClose = styled(Close)`
   margin-left: 6px;
-`
+`;
+
+export const pages = [
+  "Problem",
+  "Scale",
+  "Factory",
+  "More info",
+  "Confirmation"
+];
 
 const App = () => {
   return (
