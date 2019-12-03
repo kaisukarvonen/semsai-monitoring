@@ -80,6 +80,7 @@ const Problem = () => {
           nextProps={{
             disabled: problem.name === "Other" && !problem.info
           }}
+          backLink="/"
           nextLink="/workers-affected"
         />
       </Container>
