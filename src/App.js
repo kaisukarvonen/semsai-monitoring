@@ -45,7 +45,7 @@ export const pages = [
   "Scale",
   "Factory",
   "More info",
-  "Confirmation"42
+  "Confirmation"
 ];
 
 const App = () => {

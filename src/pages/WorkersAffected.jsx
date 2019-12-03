@@ -11,9 +11,9 @@ const WorkersAffected = () => {
     <>
       <p>Workers affected</p>
       <ActionButtons
-        previousProps={{ disabled: true }}
+        previousProps={{ disabled: false }}
         nextProps={{
-          disabled: problem.name === "Other" && !problem.info
+          disabled: false
         }}
         previosLink="/"
         nextLink="/location"
