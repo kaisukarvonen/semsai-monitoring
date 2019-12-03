@@ -13,7 +13,7 @@ const ButtonContainer = styled.div`
 `;
 const ActionButtons = ({ previousProps, nextProps, backLink, nextLink }) => (
   <ButtonContainer>
-    <Link to={nextLink}>
+    <Link to={backLink}>
       <SecondaryButton variant="outlined" color="primary" {...previousProps}>
         Back
       </SecondaryButton>

@@ -15,7 +15,7 @@ const Location = () => {
         nextProps={{
           disabled: false
         }}
-        previousLink="/workers-affected"
+        backLink="/workers-affected"
         nextLink="/"
       />
     </>

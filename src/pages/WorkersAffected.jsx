@@ -15,7 +15,7 @@ const WorkersAffected = () => {
         nextProps={{
           disabled: false
         }}
-        previosLink="/"
+        backLink="/"
         nextLink="/location"
       />
     </>
