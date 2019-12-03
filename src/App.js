@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import WorkersAffected from "./pages/WorkersAffected";
 import Problem from "./pages/Problem";
+import Location from "./pages/Location";
 import styled from "styled-components";
 import { theme, GlobalStyle } from "./styles";
 import {
@@ -44,7 +45,7 @@ export const pages = [
   "Scale",
   "Factory",
   "More info",
-  "Confirmation"
+  "Confirmation"42
 ];
 
 const App = () => {
@@ -74,6 +75,9 @@ const App = () => {
                       </Route>
                       <Route exact path="/workers-affected">
                         <WorkersAffected />
+                      </Route>
+                      <Route exact path="/location">
+                        <Location />
                       </Route>
                     </Switch>
                   </RouteContainer>

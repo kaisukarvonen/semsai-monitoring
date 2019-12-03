@@ -6,20 +6,20 @@ import { Button, TextField, InputAdornment } from "@material-ui/core";
 import { KeyboardVoice } from "@material-ui/icons";
 import SecondaryButton from "../components/SecondaryButton";
 
-const WorkersAffected = () => {
+const Location = () => {
   return (
     <>
-      <p>Workers affected</p>
+      <p>Location</p>
       <ActionButtons
         previousProps={{ disabled: true }}
         nextProps={{
           disabled: problem.name === "Other" && !problem.info
         }}
-        previosLink="/"
-        nextLink="/location"
+        previousLink="/workers-affected"
+        nextLink="/"
       />
     </>
   );
 };
 
-export default WorkersAffected;
+export default Location;
