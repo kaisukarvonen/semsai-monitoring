@@ -19,7 +19,7 @@ const Line = styled.div`
   position: absolute;
   top: 12px;
   z-index: 3;
-  left: 20px;
+  left: 8%;
 `;
 
 const PageContainer = styled.div`
