@@ -1,7 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { pages } from "../App";
 import { Done } from "@material-ui/icons";
+import { Pages, changePage } from "../store";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const Container = styled.div`
   width: 100%;
@@ -54,21 +56,33 @@ const Page = styled.div`
   z-index: 6;
 `;
 
-const ProgressBar = ({ donePages, active }) => {
-  const pageIsDone = page => donePages && donePages.includes(page);
+const ProgressBar = ({ finishedPages, page }) => {
+  const pageIsFinished = pa => finishedPages.includes(pa);
   return (
     <Container>
       <Line />
-      {pages.map((page, i) => (
-        <PageContainer key={page}>
-          <Page active={active === page || pageIsDone(page)}>
-            {pageIsDone(page) ? <Done color="action" /> : `${i + 1}`}
+      {Object.values(Pages).map((pa, i) => (
+        <PageContainer key={pa}>
+          <Page active={page === pa || pageIsFinished(pa)}>
+            {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
           </Page>
-          <span>{page}</span>
+          <span>{pa}</span>
         </PageContainer>
       ))}
     </Container>
   );
 };
 
-export default ProgressBar;
+export default connect(
+  state => ({
+    page: state.page,
+    finishedPages: state.finishedPages
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        changePage
+      },
+      dispatch
+    )
+)(ProgressBar);

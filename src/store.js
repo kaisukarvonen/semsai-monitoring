@@ -1,37 +1,39 @@
 // actions
 
-const CHANGE_PAGE = 'CHANGE_PAGE'
+const CHANGE_PAGE = "CHANGE_PAGE";
 
-export function changePage(page) {
-  return {
-    type: CHANGE_PAGE,
-    page
-  }
-}
+export const changePage = (page, pageFinished) => ({
+  type: CHANGE_PAGE,
+  page,
+  pageFinished
+});
 
 // constants
 
 export const Pages = {
-  CHOOSE_VIOLATION: 'CHOOSE_VIOLATION',
-  WORKERS_AFFECTED: 'WORKERS_AFFECTED',
-  FACTORY_LOCATION: 'FACTORY_LOCATION',
-  ADDITIONAL_INFORMATION: 'ADDITIONAL_INFORMATION',
-  CONFIRMATION_SCREEN: 'CONFIRMATION_SCREEN'
-}
+  CHOOSE_VIOLATION: "Problem",
+  WORKERS_AFFECTED: "Scale",
+  FACTORY_LOCATION: "Factory",
+  ADDITIONAL_INFORMATION: "More info",
+  CONFIRMATION_SCREEN: "Confirmation"
+};
 
 // reducers
 
 const initialState = {
   page: Pages.CHOOSE_VIOLATION,
-}
+  finishedPages: []
+};
 
 export default function semsaiApp(state = initialState, action) {
   switch (action.type) {
     case CHANGE_PAGE:
-      return Object.assign({}, state, {
-        page: action.page
-      })
-  default:
-    return state
+      const updatedPages = [...state.finishedPages];
+      if (!state.finishedPages.includes(state.page) && action.pageFinished) {
+        updatedPages.push(state.page);
+      }
+      return { ...state, page: action.page, finishedPages: updatedPages };
+    default:
+      return state;
   }
 }

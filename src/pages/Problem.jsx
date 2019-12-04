@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
 import SecondaryButton from "../components/SecondaryButton";
 import Input from "../components/Input";
+import { Pages } from "../store";
 
 const problems = [
   "Child labor",
@@ -45,7 +46,7 @@ const Problem = () => {
     <>
       <Container>
         <div>
-          <ProgressBar active="Problem" />
+          <ProgressBar />
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -80,6 +81,7 @@ const Problem = () => {
           nextProps={{
             disabled: problem.name === "Other" && !problem.info
           }}
+          nextPage={Pages.WORKERS_AFFECTED}
           backLink="/"
           nextLink="/workers-affected"
         />

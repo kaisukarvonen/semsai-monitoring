@@ -11,12 +11,12 @@ import {
 } from "@material-ui/styles";
 import { ThemeProvider } from "styled-components";
 import { Typography } from "@material-ui/core";
-import semsaiApp from './store';
-import { Provider as StoreProvider } from 'react-redux'
-import { createStore } from 'redux'
+import semsaiApp, { changePage } from "./store";
+import { Provider as StoreProvider, connect } from "react-redux";
+import { createStore, bindActionCreators } from "redux";
 import { Menu, Close, Help } from "@material-ui/icons";
 
-const Header = styled.div`
+const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,14 +40,6 @@ const StyledClose = styled(Close)`
   margin-left: 6px;
 `;
 
-export const pages = [
-  "Problem",
-  "Scale",
-  "Factory",
-  "More info",
-  "Confirmation"
-];
-
 const App = () => {
   return (
     <StylesProvider injectFirst>
@@ -58,16 +50,7 @@ const App = () => {
               <GlobalStyle />
               <AppContainer>
                 <Router>
-                  <Header>
-                    <Menu color="action" />
-                    <Typography variant="h6" color="textSecondary">
-                      Semsai Monitoring
-                    </Typography>
-                    <div>
-                      <Help color="secondary" />
-                      <StyledClose color="secondary" />
-                    </div>
-                  </Header>
+                  <Header />
                   <RouteContainer>
                     <Switch>
                       <Route exact path="/">
@@ -90,5 +73,31 @@ const App = () => {
     </StylesProvider>
   );
 };
+
+const HeaderComponent = ({ page }) => (
+  <StyledHeader>
+    <Menu color="action" />
+    <Typography variant="h6" color="textSecondary">
+      {page}
+    </Typography>
+    <div>
+      <Help color="secondary" />
+      <StyledClose color="secondary" />
+    </div>
+  </StyledHeader>
+);
+
+const Header = connect(
+  state => ({
+    page: state.page
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        changePage
+      },
+      dispatch
+    )
+)(HeaderComponent);
 
 export default App;
