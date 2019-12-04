@@ -11,10 +11,10 @@ export const changePage = (page, pageFinished) => ({
 // constants
 
 export const Pages = {
-  CHOOSE_VIOLATION: "Problem",
+  PROBLEM: "Problem",
   WORKERS_AFFECTED: "Scale",
-  FACTORY_LOCATION: "Factory",
-  ADDITIONAL_INFORMATION: "More info",
+  LOCATION: "Factory",
+  MORE_INFO: "More info",
   CONFIRMATION_SCREEN: "Confirmation"
 };
 

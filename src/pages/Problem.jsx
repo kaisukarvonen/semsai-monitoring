@@ -79,7 +79,7 @@ const Problem = () => {
         <ActionButtons
           previousProps={{ disabled: true }}
           nextProps={{
-            disabled: problem.name === "Other" && !problem.info
+            disabled: !problem.name || (problem.name === "Other" && !problem.info)
           }}
           nextPage={Pages.WORKERS_AFFECTED}
           backLink="/"

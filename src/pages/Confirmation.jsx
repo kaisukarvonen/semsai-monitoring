@@ -3,23 +3,23 @@ import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
 import { Pages } from "../store";
 
-const WorkersAffected = () => {
+const Confirmation = () => {
   return (
     <>
       <ProgressBar />
-      <p>Workers affected</p>
+      <p>Confirmation</p>
       <ActionButtons
         previousProps={{ disabled: false }}
         nextProps={{
           disabled: false
         }}
-        backLink="/"
-        nextLink="/location"
+        backLink="/more-info"
+        nextLink="/"
+        nextPage={Pages.MORE_INFO}
         previousPage={Pages.PROBLEM}
-        nextPage={Pages.LOCATION}
       />
     </>
   );
 };
 
-export default WorkersAffected;
+export default Confirmation;

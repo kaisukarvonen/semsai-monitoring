@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import WorkersAffected from "./pages/WorkersAffected";
 import Problem from "./pages/Problem";
 import Location from "./pages/Location";
+import MoreInfo from "./pages/MoreInfo";
+import Confirmation from "./pages/Confirmation";
 import styled from "styled-components";
 import { theme, GlobalStyle } from "./styles";
 import {
@@ -61,6 +63,12 @@ const App = () => {
                       </Route>
                       <Route exact path="/location">
                         <Location />
+                      </Route>
+                      <Route exact path="/more-info">
+                        <MoreInfo />
+                      </Route>
+                      <Route exact path="/confirmation">
+                        <Confirmation />
                       </Route>
                     </Switch>
                   </RouteContainer>

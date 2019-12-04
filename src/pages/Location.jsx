@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import ProgressBar from "../components/ProgressBar";
-import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
-import { Button, TextField, InputAdornment } from "@material-ui/core";
-import { KeyboardVoice } from "@material-ui/icons";
-import SecondaryButton from "../components/SecondaryButton";
+import { Pages } from "../store";
 
 const Location = () => {
   return (
     <>
+      <ProgressBar />
       <p>Location</p>
       <ActionButtons
         previousProps={{ disabled: false }}
@@ -16,7 +14,9 @@ const Location = () => {
           disabled: false
         }}
         backLink="/workers-affected"
-        nextLink="/"
+        nextLink="/more-info"
+        previousPage={Pages.WORKERS_AFFECTED}
+        nextPage={Pages.MORE_INFO}
       />
     </>
   );
