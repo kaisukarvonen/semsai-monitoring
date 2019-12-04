@@ -21,7 +21,7 @@ export const Pages = {
 // reducers
 
 const initialState = {
-  page: Pages.CHOOSE_VIOLATION,
+  page: Pages.PROBLEM,
   finishedPages: []
 };
 

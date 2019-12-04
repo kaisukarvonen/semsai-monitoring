@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import SecondaryButton from "./SecondaryButton";
-import { Link } from "react-router-dom";
 import { changePage } from "../store";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DisabledLink from './DisabledLink'
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const ActionButtons = ({
   previousPage
 }) => (
   <ButtonContainer>
-    <Link to={backLink}>
+    <DisabledLink to={backLink} disabled={previousProps.disabled}>
       <SecondaryButton
         variant="outlined"
         color="primary"
@@ -34,8 +34,8 @@ const ActionButtons = ({
       >
         Back
       </SecondaryButton>
-    </Link>
-    <Link to={nextLink}>
+    </DisabledLink>
+    <DisabledLink to={nextLink} disabled={nextProps.disabled}>
       <Button
         variant="contained"
         color="primary"
@@ -44,7 +44,7 @@ const ActionButtons = ({
       >
         Next page
       </Button>
-    </Link>
+    </DisabledLink>
   </ButtonContainer>
 );
 

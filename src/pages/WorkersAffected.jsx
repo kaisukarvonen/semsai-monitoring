@@ -9,7 +9,7 @@ const WorkersAffected = () => {
       <ProgressBar />
       <p>Workers affected</p>
       <ActionButtons
-        previousProps={{ disabled: false }}
+        previousProps={{ disabled: true }}
         nextProps={{
           disabled: false
         }}
