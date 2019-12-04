@@ -18,6 +18,7 @@ const Input = ({ label, ...rest }) => {
         id="filled-basic"
         variant="filled"
         {...rest}
+        rows={3}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
