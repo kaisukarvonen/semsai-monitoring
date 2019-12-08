@@ -5,6 +5,7 @@ import ActionButtons from "../components/ActionButtons";
 import SecondaryButton from "../components/SecondaryButton";
 import Input from "../components/Input";
 import { Pages } from "../store";
+import { Typography, Box } from "@material-ui/core";
 
 const problems = [
   "Child labor",
@@ -36,6 +37,11 @@ const Container = styled.div`
   height: 100%;
 `;
 
+const StyledTypography = styled(Typography)`
+  font-weight: 200;
+  line-height: 1.3;
+`;
+
 const Problem = () => {
   const [problem, setProblem] = useState({});
 
@@ -47,39 +53,50 @@ const Problem = () => {
       <Container>
         <div>
           <ProgressBar />
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris
-          </div>
-          <Problems>
-            {problems.map(v => (
-              <ProblemItem key={v}>
-                <SecondaryButton
-                  variant={problem.name === v ? "contained" : "outlined"}
-                  color="primary"
-                  size="small"
-                  onClick={() => updateProblem("name", v)}
-                >
-                  {v}
-                </SecondaryButton>
-              </ProblemItem>
-            ))}
-          </Problems>
-          {problem.name && (
-            <Input
-              label="Please tell what has happened"
-              multiline
-              placeholder="text"
-              value={problem.info}
-              onChange={e => updateProblem("info", e.target.value)}
-            />
-          )}
+          <Box px={"12px"}>
+            <Box py={"3px"}>
+              Select below what your problem is about.
+              <StyledTypography variant="subtitle1">
+                Please, select only one. If you have many problems, you can make
+                another report later.
+              </StyledTypography>
+            </Box>
+            <Problems>
+              {problems.map(v => (
+                <ProblemItem key={v}>
+                  <SecondaryButton
+                    variant={problem.name === v ? "contained" : "outlined"}
+                    color="primary"
+                    size="small"
+                    onClick={() => updateProblem("name", v)}
+                  >
+                    {v}
+                  </SecondaryButton>
+                </ProblemItem>
+              ))}
+            </Problems>
+            {problem.name && (
+              <Input
+                label={
+                  <>
+                    Write in more detail what has happened.
+                    <StyledTypography variant="subtitle1">
+                      You can also click the microphone to speak.
+                    </StyledTypography>
+                  </>
+                }
+                multiline
+                value={problem.info}
+                onChange={e => updateProblem("info", e.target.value)}
+              />
+            )}
+          </Box>
         </div>
         <ActionButtons
           previousProps={{ disabled: true }}
           nextProps={{
-            disabled: !problem.name || (problem.name === "Other" && !problem.info)
+            disabled:
+              !problem.name || (problem.name === "Other" && !problem.info)
           }}
           nextPage={Pages.WORKERS_AFFECTED}
           backLink="/"
