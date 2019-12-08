@@ -82,12 +82,14 @@ const App = () => {
   );
 };
 
+const StyledTypography = styled(Typography)`
+  color: #fff;
+`;
+
 const HeaderComponent = ({ page }) => (
   <StyledHeader>
     <Menu color="action" />
-    <Typography variant="h6" color="textSecondary">
-      {page}
-    </Typography>
+    <StyledTypography variant="h6">{page}</StyledTypography>
     <div>
       <Help color="secondary" />
       <StyledClose color="secondary" />
