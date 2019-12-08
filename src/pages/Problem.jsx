@@ -4,7 +4,9 @@ import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
 import SecondaryButton from "../components/SecondaryButton";
 import Input from "../components/Input";
-import { Pages } from "../store";
+import { Pages, saveReport } from "../store";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Typography, Box } from "@material-ui/core";
 
 const problems = [
@@ -42,12 +44,11 @@ const StyledTypography = styled(Typography)`
   line-height: 1.3;
 `;
 
-const Problem = () => {
-  const [problem, setProblem] = useState({});
-
+const Problem = ({ saveReport, report }) => {
   const updateProblem = (key, val) => {
-    setProblem({ ...problem, [key]: val });
+    saveReport({ problem: { ...report.problem, [key]: val } });
   };
+  const updatedProblem = report.problem || {};
   return (
     <>
       <Container>
@@ -65,7 +66,9 @@ const Problem = () => {
               {problems.map(v => (
                 <ProblemItem key={v}>
                   <SecondaryButton
-                    variant={problem.name === v ? "contained" : "outlined"}
+                    variant={
+                      updatedProblem.name === v ? "contained" : "outlined"
+                    }
                     color="primary"
                     size="small"
                     onClick={() => updateProblem("name", v)}
@@ -75,7 +78,7 @@ const Problem = () => {
                 </ProblemItem>
               ))}
             </Problems>
-            {problem.name && (
+            {updatedProblem.name && (
               <Input
                 label={
                   <>
@@ -86,7 +89,7 @@ const Problem = () => {
                   </>
                 }
                 multiline
-                value={problem.info}
+                value={updatedProblem.info}
                 onChange={e => updateProblem("info", e.target.value)}
               />
             )}
@@ -96,7 +99,8 @@ const Problem = () => {
           previousProps={{ disabled: true }}
           nextProps={{
             disabled:
-              !problem.name || (problem.name === "Other" && !problem.info)
+              !updatedProblem.name ||
+              (updatedProblem.name === "Other" && !updatedProblem.info)
           }}
           nextPage={Pages.WORKERS_AFFECTED}
           backLink="/"
@@ -107,4 +111,15 @@ const Problem = () => {
   );
 };
 
-export default Problem;
+export default connect(
+  state => ({
+    report: state.report
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        saveReport
+      },
+      dispatch
+    )
+)(Problem);

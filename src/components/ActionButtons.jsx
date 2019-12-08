@@ -5,7 +5,7 @@ import SecondaryButton from "./SecondaryButton";
 import { changePage } from "../store";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import DisabledLink from './DisabledLink'
+import DisabledLink from "./DisabledLink";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -25,7 +25,10 @@ const ActionButtons = ({
   previousPage
 }) => (
   <ButtonContainer>
-    <DisabledLink to={backLink} disabled={previousProps.disabled}>
+    <DisabledLink
+      to={backLink}
+      disabled={previousProps && previousProps.disabled}
+    >
       <SecondaryButton
         variant="outlined"
         color="primary"
