@@ -27,6 +27,7 @@ const MoreInfo = ({ report, saveReport }) => {
             multiline
             rows={4}
             onChange={e => updateLocation("name", e.target.value)}
+            helperText="e.g. How long this has continued"
           />
           <Box pt={"20%"}>
             You can also add a picture, if it helps to understand your problem
