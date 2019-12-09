@@ -3,17 +3,17 @@ import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
 import { Pages, saveReport } from "../store";
 import Slider from '@material-ui/core/Slider';
-import { PersonOutlined, Router } from "@material-ui/icons";
+import { PersonOutlined } from "@material-ui/icons";
 import Input from "../components/Input";
 import {
-  Box,
-  InputAdornment,
   Checkbox,
   FormControlLabel,
   Grid,
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIndustry } from '@fortawesome/free-solid-svg-icons'
 
 const WorkersAffected = ({ report, saveReport }) => {
   const setAffectedValue = (key, val) => {
@@ -24,7 +24,7 @@ const WorkersAffected = ({ report, saveReport }) => {
   return (
     <>
       <ProgressBar />
-      <h2>Workers affected</h2>
+      <p>Approximately, how many have experienced this problem?</p>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <PersonOutlined />
@@ -38,7 +38,7 @@ const WorkersAffected = ({ report, saveReport }) => {
           />
         </Grid>
           <Grid item>
-          <Router />
+            <FontAwesomeIcon icon={faIndustry} />
           </Grid>
       </Grid>
       <FormControlLabel

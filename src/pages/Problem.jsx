@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProgressBar from "../components/ProgressBar";
 import styled from "styled-components";
 import ActionButtons from "../components/ActionButtons";
