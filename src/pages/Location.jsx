@@ -46,7 +46,7 @@ const Location = ({ report, saveReport }) => {
       </Box>
       <ActionButtons
         nextProps={{
-          disabled: false
+          disabled: !updatedLocation.name || updatedLocation.name.length < 3
         }}
         backLink="/workers-affected"
         nextLink="/more-info"
