@@ -1,49 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
 import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
 import {
   Box,
   InputAdornment,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  List,
+  ListItem
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
+import styled from "styled-components";
 
 import { Pages, saveReport } from "../store";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Input from "../components/Input";
+import { Container } from "./Problem";
+
+const StyledBox = styled(Box)`
+  position: relative;
+`;
+
+const Dropdown = styled(List)`
+  position: absolute;
+  bottom: -48px;
+  background-color: #efece6;
+  width: inherit;
+  z-index: 2;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  cursor: pointer;
+  width: calc(100% - 36px);
+  li:first-of-type {
+    border-bottom: 1px solid #ccc;
+  }
+`;
+
+const factoryOptions = ["Huawei North", "Huawei South"];
 
 const Location = ({ report, saveReport }) => {
+  const [showOptions, setShowOptions] = useState(false);
   const updateLocation = (key, val) => {
-    saveReport({ location: { ...report.location, [key]: val } });
+    saveReport({ ...report, location: { ...report.location, [key]: val } });
+    setShowOptions(
+      key === "name" &&
+        val.toLowerCase().includes("hu") &&
+        !factoryOptions.includes(val)
+    );
   };
   const updatedLocation = report.location || {};
   return (
-    <>
-      <ProgressBar />
-      <Box px={"18px"} pt={"12px"}>
-        <Input
-          label="What is the name of the factory where you work?"
-          value={updatedLocation.name}
-          onChange={e => updateLocation("name", e.target.value)}
-          startAdornment={
-            <InputAdornment position="start">
-              <Search />
-            </InputAdornment>
-          }
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={updatedLocation.remember}
-              onChange={e => updateLocation("remember", e.target.checked)}
-              color="primary"
-            />
-          }
-          label="Remember this next time"
-        />
-      </Box>
+    <Container>
+      <div>
+        <ProgressBar />
+        <StyledBox px={"18px"} pt={"12px"}>
+          <Input
+            label="What is the name of the factory where you work?"
+            value={updatedLocation.name}
+            onChange={e => updateLocation("name", e.target.value)}
+            startAdornment={
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            }
+          />
+          {showOptions && (
+            <Dropdown>
+              {factoryOptions.map(factory => (
+                <ListItem onClick={() => updateLocation("name", factory)}>
+                  {factory}
+                </ListItem>
+              ))}
+            </Dropdown>
+          )}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={updatedLocation.remember}
+                onChange={e => updateLocation("remember", e.target.checked)}
+                color="primary"
+              />
+            }
+            label="Remember this next time"
+          />
+        </StyledBox>
+      </div>
       <ActionButtons
         nextProps={{
           disabled: !updatedLocation.name || updatedLocation.name.length < 3
@@ -53,7 +95,7 @@ const Location = ({ report, saveReport }) => {
         previousPage={Pages.WORKERS_AFFECTED}
         nextPage={Pages.MORE_INFO}
       />
-    </>
+    </Container>
   );
 };
 

@@ -33,7 +33,7 @@ const RouteContainer = styled.div`
 `;
 
 const AppContainer = styled.div`
-  background: linear-gradient(158.35deg, #ffffff 2.73%, #f3eee4 98.97%), #fafaf8;
+  background: linear-gradient(158.35deg, #ffffff 2.73%, #F3EEE4 98.97%), #F3EEE4;
   height: 100%;
   font-size: 15px;
 `;

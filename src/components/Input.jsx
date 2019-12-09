@@ -10,8 +10,8 @@ const StyledTextField = styled(TextField)`
   .MuiInputAdornment-filled.MuiInputAdornment-positionStart:not(.MuiInputAdornment-hiddenLabel) {
     margin-top: 0;
   }
-  .MuiFilledInput-input {
-    padding: 20px 3px;
+  .MuiFilledInput-input:not(textarea) {
+    padding: 17px 3px;
   }
 `;
 
@@ -23,8 +23,8 @@ const Input = ({ label, startAdornment, ...rest }) => {
         fullWidth
         id="filled-basic"
         variant="filled"
-        {...rest}
         rows={3}
+        {...rest}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

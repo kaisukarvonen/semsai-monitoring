@@ -26,27 +26,27 @@ const Problems = styled.div`
 
 const ProblemItem = styled.div`
   margin: 0.4rem 0;
-  width: 50%;
+  width: 63%;
   button {
     width: 100%;
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
 `;
 
-const StyledTypography = styled(Typography)`
+export const StyledTypography = styled(Typography)`
   font-weight: 200;
   line-height: 1.3;
 `;
 
 const Problem = ({ saveReport, report }) => {
   const updateProblem = (key, val) => {
-    saveReport({ problem: { ...report.problem, [key]: val } });
+    saveReport({ ...report, problem: { ...report.problem, [key]: val } });
   };
   const updatedProblem = report.problem || {};
   return (
