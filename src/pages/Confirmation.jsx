@@ -87,7 +87,7 @@ const Confirmation = () => {
         }}
         backLink="/more-info"
         nextLink="/thank-you"
-        sendReport={Pages.THANK_YOU}
+        nextPage={Pages.THANK_YOU}
         previousPage={Pages.MORE_INFO}
       />
     </>
