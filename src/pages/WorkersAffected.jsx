@@ -37,6 +37,7 @@ const WorkersAffected = ({ report, saveReport }) => {
           <Typography variant="body1">
             Approximately, how many have experienced this problem?
           </Typography>
+          <br />
           <Grid container spacing={2} alignItems="center">
             <Grid container spacing={2} alignItems="center" direction="row">
               <Grid item>
