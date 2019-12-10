@@ -1,9 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Done } from "@material-ui/icons";
-import { Pages, changePage } from "../store";
+import { Pages, PageLinks, changePage } from "../store";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -56,19 +57,26 @@ const Page = styled.div`
   z-index: 6;
 `;
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
 const ProgressBar = ({ finishedPages, page }) => {
   const pageIsFinished = pa => finishedPages.includes(pa);
   return (
     <Container>
       <Line />
-      {Object.values(Pages)
+      {Object.keys(Pages)
         .slice(0, -1)
         .map((pa, i) => (
           <PageContainer key={pa}>
-            <Page active={page === pa || pageIsFinished(pa)}>
-              {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
-            </Page>
-            <span>{pa}</span>
+            <StyledLink to={PageLinks[pa]}>
+              <Page active={page === Pages[pa] || pageIsFinished(pa)}>
+                {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
+              </Page>
+            </StyledLink>
+            <span>{Pages[pa]}</span>
           </PageContainer>
         ))}
     </Container>

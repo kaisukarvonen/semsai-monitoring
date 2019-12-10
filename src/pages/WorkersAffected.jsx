@@ -21,6 +21,7 @@ import { Container } from "./Problem";
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.palette.primary.main};
+  font-size: 18px;
 `;
 
 const WorkersAffected = ({ report, saveReport }) => {
