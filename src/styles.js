@@ -22,12 +22,17 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.typography.fontFamily};
     font-size: 0.875rem;
   }
-  
+
+  body {
+    background-color: #FAFAF8;
+    color: #303030;
+  }
+
   #root {
     height: 100%;
   }
 
-  * { 
+  * {
     box-sizing: border-box
   }
 `;
