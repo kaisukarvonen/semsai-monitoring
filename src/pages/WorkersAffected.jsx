@@ -68,7 +68,7 @@ const WorkersAffected = ({ report, saveReport }) => {
                 color="primary"
               />
             }
-            label="I do not know"
+            label="I don't know"
           />
           <Box pt={2}>
             <Input
