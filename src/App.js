@@ -18,15 +18,6 @@ import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, bindActionCreators } from "redux";
 import { Menu, Close, Help } from "@material-ui/icons";
 
-const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0.7rem;
-  background-color: ${({ theme }) => theme.palette.primary.main};
-  height: 50px;
-`;
-
 const RouteContainer = styled.div`
   padding: 0.9rem;
   height: calc(100% - 50px);
@@ -81,6 +72,16 @@ const App = () => {
     </StylesProvider>
   );
 };
+
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.7rem;
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  height: 50px;
+  box-shadow: 0px 4px 4px 0;
+`;
 
 const StyledTypography = styled(Typography)`
   color: #fff;
