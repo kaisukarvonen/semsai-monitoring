@@ -46,6 +46,8 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledButton = styled(SecondaryButton)`
   text-transform: none;
+  font-weight: normal;
+  font-size: 14px;
 `;
 
 const Problem = ({ saveReport, report }) => {
