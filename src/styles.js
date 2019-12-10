@@ -4,7 +4,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 export const theme = createMuiTheme({
   palette: {
     primary: { main: "#2104D6" },
-    secondary: { main: "#FCC332" },
+    secondary: { main: "#FFCF54" },
     text: { main: "#222", secondary: "#555" },
     action: { active: "#fff" }
   },
@@ -22,12 +22,17 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.typography.fontFamily};
     font-size: 0.875rem;
   }
-  
+
+  body {
+    background-color: #FAFAF8;
+    color: #303030;
+  }
+
   #root {
     height: 100%;
   }
 
-  * { 
+  * {
     box-sizing: border-box
   }
 `;
