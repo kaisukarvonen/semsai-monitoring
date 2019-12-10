@@ -21,7 +21,8 @@ export const Pages = {
   WORKERS_AFFECTED: "Scale",
   LOCATION: "Factory",
   MORE_INFO: "More info",
-  CONFIRMATION_SCREEN: "Confirmation"
+  CONFIRMATION_SCREEN: "Confirmation",
+  THANK_YOU: "App name"
 };
 
 // reducers

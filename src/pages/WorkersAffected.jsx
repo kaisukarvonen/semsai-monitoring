@@ -82,6 +82,7 @@ const WorkersAffected = ({ report, saveReport }) => {
         </Box>
       </Grid>
       <ActionButtons
+        previousProps={{}}
         nextProps={{
           disabled: false
         }}

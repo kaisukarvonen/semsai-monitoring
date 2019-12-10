@@ -17,6 +17,7 @@ import semsaiApp, { changePage } from "./store";
 import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, bindActionCreators } from "redux";
 import { Menu, Close, Help } from "@material-ui/icons";
+import ThankYou from "./pages/ThankYou";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -68,6 +69,9 @@ const App = () => {
                       </Route>
                       <Route exact path="/confirmation">
                         <Confirmation />
+                      </Route>
+                      <Route exact path="/thank-you">
+                        <ThankYou />
                       </Route>
                     </Switch>
                   </RouteContainer>

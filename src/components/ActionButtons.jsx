@@ -35,7 +35,7 @@ const ActionButtons = ({
         {...previousProps}
         onClick={() => previousPage && changePage(previousPage)}
       >
-        Back
+        {previousProps.customText || "Back"}
       </SecondaryButton>
     </DisabledLink>
     <DisabledLink to={nextLink} disabled={nextProps.disabled}>
@@ -45,7 +45,7 @@ const ActionButtons = ({
         {...nextProps}
         onClick={() => changePage(nextPage, true)}
       >
-        Next page
+        {nextProps.customText || "Next page"}
       </Button>
     </DisabledLink>
   </ButtonContainer>
