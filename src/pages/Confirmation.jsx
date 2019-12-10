@@ -1,10 +1,14 @@
-import React from "react";
+import React from "react"
 import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
-import { Pages } from "../store";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { 
+  Pages,
+  saveReport
+ } from "../store";
 import {
   Card,
-  Button,
   CardHeader,
   CardContent,
   Typography,
@@ -12,7 +16,7 @@ import {
 } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 
-const Confirmation = () => {
+const Confirmation = ({report}) => {
   return (
     <>
       <ProgressBar />
@@ -24,52 +28,48 @@ const Confirmation = () => {
           action={
             <IconButton color="primary" aria-label="edit problem" href="/">
               <CreateIcon />
-            </IconButton>
-          }
-          title="Problem:"
-        />
-        <CardContent>
-          <Typography>Text</Typography>
-        </CardContent>
-      </Card>
-      <p></p>
-      <Card>
-        <CardHeader
-          action={
-            <IconButton
-              color="primary"
-              aria-label="edit scale"
-              href="workers-affected"
-            >
+              </IconButton>
+            }
+            title ="Problem:"
+          />
+          <CardContent>
+            <Typography >
+              {}
+            </Typography>
+            </CardContent>
+          </Card>
+          <p></p>
+          <Card>
+            <CardHeader
+            action={
+              <IconButton color="primary" aria-label="edit scale" href="workers-affected">
               <CreateIcon />
-            </IconButton>
-          }
-          title="Scale:"
-        />
-      </Card>
-      <p></p>
-      <Card>
-        <CardHeader
-          action={
-            <IconButton color="primary" aria-label="edit scale" href="location">
+              </IconButton>
+            }
+            title = "Scale:"
+          />
+          </Card>
+          <p></p>
+          <Card>
+            <CardHeader
+            action={
+              <IconButton color="primary" aria-label="edit scale" href="location">
               <CreateIcon />
-            </IconButton>
-          }
-          title="Location:"
-        />
-        <CardContent>
-          <Typography>Text</Typography>
-        </CardContent>
-      </Card>
-      <p></p>
-      <Card>
-        <CardHeader
-          action={
-            <IconButton
-              color="primary"
-              aria-label="edit info"
-              href="/more-info"
-            >
+              </IconButton>
+            }
+            title = {"Location:  "+ report.location.name}
+          />
+          <CardContent>
+            <Typography >
+              Text
+            </Typography>
+            </CardContent>
+          </Card>
+          <p></p>
+          <Card>
+            <CardHeader
+            action={
+              <IconButton color="primary" aria-label="edit info" href="/more-info">
               <CreateIcon />
             </IconButton>
           }
@@ -87,11 +87,22 @@ const Confirmation = () => {
         }}
         backLink="/more-info"
         nextLink="/thank-you"
-        sendReport={Pages.THANK_YOU}
+        nextPage={Pages.THANK_YOU}
         previousPage={Pages.MORE_INFO}
       />
     </>
   );
 };
 
-export default Confirmation;
+export default connect(
+  state => ({
+    report: state.report
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        saveReport
+      },
+      dispatch
+    )
+)(Confirmation);
