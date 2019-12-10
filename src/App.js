@@ -84,6 +84,8 @@ const App = () => {
 
 const StyledTypography = styled(Typography)`
   color: #fff;
+  flex-grow: 1;
+  padding-left: 32px;
 `;
 
 const HeaderComponent = ({ page }) => (
