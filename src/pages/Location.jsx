@@ -7,7 +7,8 @@ import {
   Checkbox,
   FormControlLabel,
   List,
-  ListItem
+  ListItem,
+  Typography
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import styled from "styled-components";
@@ -24,7 +25,7 @@ const StyledBox = styled(Box)`
 
 const Dropdown = styled(List)`
   position: absolute;
-  bottom: -48px;
+  bottom: -45px;
   background-color: #efece6;
   width: inherit;
   z-index: 2;
@@ -35,6 +36,10 @@ const Dropdown = styled(List)`
   li:first-of-type {
     border-bottom: 1px solid #ccc;
   }
+`;
+
+const StyledLabel = styled.span`
+  font-size: 14px;
 `;
 
 const factoryOptions = ["Huawei North", "Huawei South"];
@@ -56,7 +61,11 @@ const Location = ({ report, saveReport }) => {
         <ProgressBar />
         <StyledBox px={"18px"} pt={"12px"}>
           <Input
-            label="What is the name of the factory where you work?"
+            label={
+              <Typography variant="body1">
+                What is the name of the factory where you work?
+              </Typography>
+            }
             value={updatedLocation.name}
             onChange={e => updateLocation("name", e.target.value)}
             startAdornment={
@@ -82,11 +91,12 @@ const Location = ({ report, saveReport }) => {
                 color="primary"
               />
             }
-            label="Remember this next time"
+            label={<StyledLabel>Remember this next time</StyledLabel>}
           />
         </StyledBox>
       </div>
       <ActionButtons
+        previousProps={{}}
         nextProps={{
           disabled: !updatedLocation.name || updatedLocation.name.length < 3
         }}

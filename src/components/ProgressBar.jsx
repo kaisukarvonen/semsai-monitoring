@@ -61,14 +61,16 @@ const ProgressBar = ({ finishedPages, page }) => {
   return (
     <Container>
       <Line />
-      {Object.values(Pages).map((pa, i) => (
-        <PageContainer key={pa}>
-          <Page active={page === pa || pageIsFinished(pa)}>
-            {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
-          </Page>
-          <span>{pa}</span>
-        </PageContainer>
-      ))}
+      {Object.values(Pages)
+        .slice(0, -1)
+        .map((pa, i) => (
+          <PageContainer key={pa}>
+            <Page active={page === pa || pageIsFinished(pa)}>
+              {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
+            </Page>
+            <span>{pa}</span>
+          </PageContainer>
+        ))}
     </Container>
   );
 };

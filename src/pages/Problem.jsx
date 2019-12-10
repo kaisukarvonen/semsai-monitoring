@@ -42,6 +42,7 @@ export const Container = styled.div`
 export const StyledTypography = styled(Typography)`
   font-weight: 200;
   line-height: 1.3;
+  font-size: 14px;
 `;
 
 export const StyledButton = styled(SecondaryButton)`
@@ -62,7 +63,9 @@ const Problem = ({ saveReport, report }) => {
           <ProgressBar />
           <Box px={"12px"}>
             <Box py={"3px"}>
-              Select below what your problem is about.
+              <Typography variant="body1">
+                Select below what your problem is about.
+              </Typography>
               <StyledTypography variant="subtitle1">
                 Please, select only one. If you have many problems, you can make
                 another report later.
@@ -88,7 +91,9 @@ const Problem = ({ saveReport, report }) => {
               <Input
                 label={
                   <>
-                    Write in more detail what has happened.
+                    <Typography variant="body1">
+                      Write in more detail what has happened.
+                    </Typography>
                     <StyledTypography variant="subtitle1">
                       You can also click the microphone to speak.
                     </StyledTypography>
