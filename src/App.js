@@ -84,7 +84,7 @@ const StyledHeader = styled.div`
   padding: 0 0.7rem;
   background-color: ${({ theme }) => theme.palette.primary.main};
   height: 50px;
-  box-shadow: 0px 4px 4px 0;
+  box-shadow: 0px 2px 4px 0;
 `;
 
 const StyledTypography = styled(Typography)`
