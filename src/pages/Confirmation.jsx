@@ -30,7 +30,7 @@ const Confirmation = ({report}) => {
               <CreateIcon />
               </IconButton>
             }
-            title ="Problem:"
+            title ={"Problem:" + (report.problem.name || "")}
           />
           <CardContent>
             <Typography >
@@ -57,12 +57,9 @@ const Confirmation = ({report}) => {
               <CreateIcon />
               </IconButton>
             }
-            title = {"Location:  "+ report.location.name}
+            title = {"Location:  " + (report.location.name || "")}
           />
           <CardContent>
-            <Typography >
-              Text
-            </Typography>
             </CardContent>
           </Card>
           <p></p>
@@ -73,10 +70,12 @@ const Confirmation = ({report}) => {
               <CreateIcon />
             </IconButton>
           }
-          title="More information:"
+          title={"More information"}
         />
         <CardContent>
-          <Typography>Text</Typography>
+          <Typography>
+            {report.moreInfo.name || ""}
+          </Typography>
         </CardContent>
       </Card>
       <ActionButtons

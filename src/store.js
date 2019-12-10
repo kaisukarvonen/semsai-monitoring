@@ -30,7 +30,7 @@ export const Pages = {
 const initialState = {
   page: Pages.PROBLEM,
   finishedPages: [],
-  report: {}
+  report: { problem:{},location:{},affected:{},moreInfo:{} } 
 };
 
 export default function semsaiApp(state = initialState, action) {
