@@ -1,10 +1,14 @@
-import React from "react";
+import React from "react"
 import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
-import { Pages } from "../store";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { 
+  Pages,
+  saveReport
+ } from "../store";
 import {
   Card,
-  Button,
   CardHeader,
   CardContent,
   Typography,
@@ -12,7 +16,7 @@ import {
 }from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 
-const Confirmation = () => {
+const Confirmation = ({report}) => {
   return (
     <>
       <ProgressBar />
@@ -28,7 +32,7 @@ const Confirmation = () => {
           />
           <CardContent>
             <Typography >
-              Text
+              {}
             </Typography>
             </CardContent>
           </Card>
@@ -40,7 +44,7 @@ const Confirmation = () => {
               <CreateIcon />
               </IconButton>
             }
-            title ="Scale:"
+            title = "Scale:"
           />
           </Card>
           <p></p>
@@ -51,7 +55,7 @@ const Confirmation = () => {
               <CreateIcon />
               </IconButton>
             }
-            title ="Location:"
+            title = {"Location:  "+ report.location.name}
           />
           <CardContent>
             <Typography >
@@ -90,4 +94,15 @@ const Confirmation = () => {
   );
 };
 
-export default Confirmation;
+export default connect(
+  state => ({
+    report: state.report
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        saveReport
+      },
+      dispatch
+    )
+)(Confirmation);
