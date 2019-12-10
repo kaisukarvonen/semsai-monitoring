@@ -35,7 +35,9 @@ const WorkersAffected = ({ report, saveReport }) => {
       <Grid item>
         <ProgressBar />
         <Box px={"12px"}>
-          <p>Approximately, how many have experienced this problem?</p>
+          <Typography variant="body1">
+            Approximately, how many have experienced this problem?
+          </Typography>
           <Grid container spacing={2} alignItems="center">
             <Grid direction="column">
               <PersonOutlined color="primary" />
@@ -73,7 +75,11 @@ const WorkersAffected = ({ report, saveReport }) => {
           />
           <Box pt={2}>
             <Input
-              label="Write more here (optional)"
+              label={
+                <Typography variant="body1">
+                  Write more here (optional)
+                </Typography>
+              }
               multiline
               rows={2}
               value={affected.more || ""}
