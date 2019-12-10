@@ -21,7 +21,6 @@ import { Container } from "./Problem";
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.palette.primary.main};
-  margin-top: 14px;
 `;
 
 const WorkersAffected = ({ report, saveReport }) => {
@@ -35,30 +34,39 @@ const WorkersAffected = ({ report, saveReport }) => {
       <Grid item>
         <ProgressBar />
         <Box px={"12px"}>
-          <p>Approximately, how many have experienced this problem?</p>
+          <Typography variant="body1">
+            Approximately, how many have experienced this problem?
+          </Typography>
+          <br />
           <Grid container spacing={2} alignItems="center">
-            <Grid direction="column">
-              <PersonOutlined color="primary" />
-              <Typography variant="body2">One</Typography>
+            <Grid container spacing={2} alignItems="center" direction="row">
+              <Grid item>
+                <PersonOutlined color="primary" />
+              </Grid>
+              <Grid item xs>
+                <Slider
+                  disabled={affected.amountNotKnown}
+                  value={affected.amount || 1}
+                  onChange={(e, newVal) => setAffectedValue("amount", newVal)}
+                  aria-labelledby="continuous-slider"
+                  min={1}
+                />
+              </Grid>
+              <Grid item>
+                <StyledFontAwesomeIcon icon={faIndustry} />
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <Slider
-                disabled={affected.amountNotKnown}
-                value={affected.amount || 1}
-                onChange={(e, newVal) => setAffectedValue("amount", newVal)}
-                aria-labelledby="continuous-slider"
-                min={1}
-              />
-            </Grid>
-            <Grid direction="column">
-              <StyledFontAwesomeIcon icon={faIndustry} />
-              <Typography variant="body2">
-                Whole
-                <br />
-                factory
-              </Typography>
+            <Grid container spacing={2} alignItems="center" direction="row">
+              <Grid item>
+                <Typography variant="body2">One</Typography>
+              </Grid>
+              <Grid item xs />
+              <Grid item>
+                <Typography variant="body2">Whole factory</Typography>
+              </Grid>
             </Grid>
           </Grid>
+          <br />
           <FormControlLabel
             control={
               <Checkbox
@@ -73,7 +81,11 @@ const WorkersAffected = ({ report, saveReport }) => {
           />
           <Box pt={2}>
             <Input
-              label="Write more here (optional)"
+              label={
+                <Typography variant="body1">
+                  Write more here (optional)
+                </Typography>
+              }
               multiline
               rows={2}
               value={affected.more || ""}

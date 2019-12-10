@@ -6,7 +6,7 @@ import { Pages, saveReport } from "../store";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Input from "../components/Input";
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import SecondaryButton from "../components/SecondaryButton";
 import { AddAPhotoOutlined } from "@material-ui/icons";
 
@@ -21,8 +21,11 @@ const MoreInfo = ({ report, saveReport }) => {
         <ProgressBar />
         <Box px={"16px"} pt={"12px"}>
           <Input
-            label="Is there still something you want to tell? (optional) 
-            "
+            label={
+              <Typography variant="body1">
+                Is there still something you want to tell? (optional)
+              </Typography>
+            }
             value={moreInfo.name}
             multiline
             rows={4}
@@ -30,8 +33,10 @@ const MoreInfo = ({ report, saveReport }) => {
             helperText="e.g. How long this has continued"
           />
           <Box pt={"20%"}>
-            You can also add a picture, if it helps to understand your problem
-            (optional)
+            <Typography variant="body1">
+              You can also add a picture, if it helps to understand your problem
+              (optional)
+            </Typography>
             <StyledTypography variant="subtitle1">
               Please respect privacy, and don’t share pictures of people’s faces
             </StyledTypography>

@@ -12,19 +12,21 @@ import {
   CardHeader,
   CardContent,
   Typography,
-  IconButton,
-}from '@material-ui/core';
-import CreateIcon from '@material-ui/icons/Create';
+  IconButton
+} from "@material-ui/core";
+import CreateIcon from "@material-ui/icons/Create";
 
 const Confirmation = ({report}) => {
   return (
     <>
       <ProgressBar />
-      <p>Make sure that all the information is correct before sending your answer</p>
-          <Card>
-            <CardHeader
-            action={
-              <IconButton color="primary" aria-label="edit problem" href="/">
+      <p>
+        Make sure that all the information is correct before sending your answer
+      </p>
+      <Card>
+        <CardHeader
+          action={
+            <IconButton color="primary" aria-label="edit problem" href="/">
               <CreateIcon />
               </IconButton>
             }
@@ -69,16 +71,14 @@ const Confirmation = ({report}) => {
             action={
               <IconButton color="primary" aria-label="edit info" href="/more-info">
               <CreateIcon />
-              </IconButton>
-            }
-            title ="More information:"
-          />
-          <CardContent>
-            <Typography >
-              Text
-            </Typography>
-            </CardContent>
-          </Card>
+            </IconButton>
+          }
+          title="More information:"
+        />
+        <CardContent>
+          <Typography>Text</Typography>
+        </CardContent>
+      </Card>
       <ActionButtons
         previousProps={{ disabled: false }}
         nextProps={{
@@ -86,8 +86,8 @@ const Confirmation = ({report}) => {
           customText: "Send report"
         }}
         backLink="/more-info"
-        nextLink="/"
-        sendReport={Pages.WORKERS_AFFECTED}
+        nextLink="/thank-you"
+        sendReport={Pages.THANK_YOU}
         previousPage={Pages.MORE_INFO}
       />
     </>
