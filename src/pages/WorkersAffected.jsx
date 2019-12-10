@@ -47,6 +47,7 @@ const WorkersAffected = ({ report, saveReport }) => {
                 value={affected.amount || 1}
                 onChange={(e, newVal) => setAffectedValue("amount", newVal)}
                 aria-labelledby="continuous-slider"
+                min={1}
               />
             </Grid>
             <Grid direction="column">
@@ -68,7 +69,7 @@ const WorkersAffected = ({ report, saveReport }) => {
                 color="primary"
               />
             }
-            label="I do not know"
+            label="I don't know"
           />
           <Box pt={2}>
             <Input

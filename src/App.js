@@ -39,6 +39,7 @@ const AppContainer = styled.div`
 `;
 
 const StyledClose = styled(Close)`
+  color: white;
   margin-left: 6px;
 `;
 
@@ -87,6 +88,8 @@ const App = () => {
 
 const StyledTypography = styled(Typography)`
   color: #fff;
+  flex-grow: 1;
+  padding-left: 32px;
 `;
 
 const HeaderComponent = ({ page }) => (
@@ -95,7 +98,7 @@ const HeaderComponent = ({ page }) => (
     <StyledTypography variant="h6">{page}</StyledTypography>
     <div>
       <Help color="secondary" />
-      <StyledClose color="secondary" />
+      <StyledClose />
     </div>
   </StyledHeader>
 );

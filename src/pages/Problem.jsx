@@ -10,10 +10,10 @@ import { bindActionCreators } from "redux";
 import { Typography, Box } from "@material-ui/core";
 
 const problems = [
+  "Working overtime",
+  "Too little salary",
+  "Safety problems",
   "Child labor",
-  "Overtime working",
-  "Missing safety gear",
-  "Issue with payment",
   "Other"
 ];
 
@@ -44,6 +44,12 @@ export const StyledTypography = styled(Typography)`
   line-height: 1.3;
 `;
 
+export const StyledButton = styled(SecondaryButton)`
+  text-transform: none;
+  font-weight: normal;
+  font-size: 14px;
+`;
+
 const Problem = ({ saveReport, report }) => {
   const updateProblem = (key, val) => {
     saveReport({ ...report, problem: { ...report.problem, [key]: val } });
@@ -65,7 +71,7 @@ const Problem = ({ saveReport, report }) => {
             <Problems>
               {problems.map(v => (
                 <ProblemItem key={v}>
-                  <SecondaryButton
+                  <StyledButton
                     variant={
                       updatedProblem.name === v ? "contained" : "outlined"
                     }
@@ -74,7 +80,7 @@ const Problem = ({ saveReport, report }) => {
                     onClick={() => updateProblem("name", v)}
                   >
                     {v}
-                  </SecondaryButton>
+                  </StyledButton>
                 </ProblemItem>
               ))}
             </Problems>
