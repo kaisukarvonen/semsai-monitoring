@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     height: 100%;
     font-family: ${props => props.theme.typography.fontFamily};
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
   body {
