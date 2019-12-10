@@ -20,7 +20,7 @@ const Confirmation = () => {
           <Card>
             <CardHeader
             action={
-              <IconButton color="primary" aria-label="edit problem">
+              <IconButton color="primary" aria-label="edit problem" href="/">
               <CreateIcon />
               </IconButton>
             }
@@ -36,7 +36,7 @@ const Confirmation = () => {
           <Card>
             <CardHeader
             action={
-              <IconButton color="primary" aria-label="edit scale">
+              <IconButton color="primary" aria-label="edit scale" href="workers-affected">
               <CreateIcon />
               </IconButton>
             }
@@ -47,7 +47,23 @@ const Confirmation = () => {
           <Card>
             <CardHeader
             action={
-              <IconButton color="primary" aria-label="edit info">
+              <IconButton color="primary" aria-label="edit scale" href="location">
+              <CreateIcon />
+              </IconButton>
+            }
+            title ="Location:"
+          />
+          <CardContent>
+            <Typography >
+              Text
+            </Typography>
+            </CardContent>
+          </Card>
+          <p></p>
+          <Card>
+            <CardHeader
+            action={
+              <IconButton color="primary" aria-label="edit info" href="/more-info">
               <CreateIcon />
               </IconButton>
             }
@@ -62,7 +78,8 @@ const Confirmation = () => {
       <ActionButtons
         previousProps={{ disabled: false }}
         nextProps={{
-          disabled: false
+          disabled: false,
+          customText: "Send report"
         }}
         backLink="/more-info"
         nextLink="/"
