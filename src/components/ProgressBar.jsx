@@ -63,6 +63,8 @@ const StyledLink = styled(Link)`
 `;
 
 const ProgressBar = ({ finishedPages, page }) => {
+  console.log(finishedPages);
+
   const pageIsFinished = pa => finishedPages.includes(pa);
   return (
     <Container>
@@ -72,8 +74,12 @@ const ProgressBar = ({ finishedPages, page }) => {
         .map((pa, i) => (
           <PageContainer key={pa}>
             <StyledLink to={PageLinks[pa]}>
-              <Page active={page === Pages[pa] || pageIsFinished(pa)}>
-                {pageIsFinished(pa) ? <Done color="action" /> : `${i + 1}`}
+              <Page active={page === Pages[pa] || pageIsFinished(Pages[pa])}>
+                {pageIsFinished(Pages[pa]) ? (
+                  <Done color="action" />
+                ) : (
+                  `${i + 1}`
+                )}
               </Page>
             </StyledLink>
             <span>{Pages[pa]}</span>

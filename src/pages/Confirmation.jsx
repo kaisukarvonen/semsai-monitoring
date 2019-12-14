@@ -1,12 +1,10 @@
-import React from "react"
+import React from "react";
 import ProgressBar from "../components/ProgressBar";
 import ActionButtons from "../components/ActionButtons";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { 
-  Pages,
-  saveReport
- } from "../store";
+import { withRouter } from "react-router-dom";
+import { Pages, saveReport, PageLinks } from "../store";
 import {
   Card,
   CardHeader,
@@ -14,113 +12,142 @@ import {
   Typography,
   IconButton,
   Grid,
-  Slider
+  Slider,
+  Box
 } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
-import { PersonOutlined } from "@material-ui/icons";
-import { faIndustry } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CreateOutlined } from "@material-ui/icons";
+
 import styled from "styled-components";
 
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  color: ${props => props.theme.palette.primary.main};
-  font-size: 18px;
+const StyledCard = styled(Card)`
+  margin: 10px 0;
+  .MuiCardContent-root {
+    padding: 10px;
+  }
 `;
 
-const Confirmation = ({report}) => {
+const Bold = styled.span`
+  font-weight: 500;
+`;
+
+const Content = styled(Typography)`
+  padding-top: 5px;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const CardContainer = ({ title, content, linkTo, history }) => {
+  return (
+    <StyledCard>
+      <CardContent>
+        <FlexContainer>
+          <div>{title}</div>
+          <CreateOutlined
+            color="primary"
+            onClick={() => history.push(linkTo)}
+          />
+        </FlexContainer>
+        {content}
+      </CardContent>
+    </StyledCard>
+  );
+};
+
+const Confirmation = ({ report, history }) => {
   return (
     <>
       <ProgressBar />
-      <p>
+      <Typography variant="body1">
         Make sure that all the information is correct before sending your answer
-      </p>
+      </Typography>
+      <CardContainer
+        title={
+          <Typography variant="body1">
+            <Bold>Problem: </Bold>
+            {report.problem.name}
+          </Typography>
+        }
+        content={<Content variant="body2">{report.problem.info}</Content>}
+        history={history}
+        linkTo={PageLinks.PROBLEM}
+      />
+      <CardContainer
+        title={
+          <FlexContainer>
+            <Typography variant="body1">
+              <Bold>Scale: </Bold>
+              {report.amountNotKnown && <>I don't know</>}
+            </Typography>
+            <div>
+              <Slider
+                // disabled={true}
+                value={report.affected.amount || 1}
+                aria-labelledby="continuous-slider"
+                min={1}
+              />
+            </div>
+          </FlexContainer>
+        }
+        content={<Content variant="body2">{report.affected.more}</Content>}
+        history={history}
+        linkTo={PageLinks.WORKERS_AFFECTED}
+      />
       <Card>
         <CardHeader
           action={
-            <IconButton color="primary" aria-label="edit problem" href="/">
+            <IconButton
+              color="primary"
+              aria-label="edit scale"
+              href="workers-affected"
+            >
               <CreateIcon />
-              </IconButton>
-            }
-            title ={"Problem:" + (report.problem.name || "")}
-          />
-          <CardContent>
-            <Typography >
-              {report.problem.info}
-            </Typography>
-            </CardContent>
-          </Card>
-          <p></p>
-          <Card>
-            <CardHeader
-            action={
-              <IconButton color="primary" aria-label="edit scale" href="workers-affected">
-              <CreateIcon />
-              </IconButton>
-            }
-            title = "Scale:"
-          />
-          <CardContent>
+            </IconButton>
+          }
+          title="Scale:"
+        />
+        <CardContent>
           <br />
           <Grid container spacing={2} alignItems="center">
             <Grid container spacing={2} alignItems="center" direction="row">
-              <Grid item>
-                <PersonOutlined color="primary" />
-              </Grid>
               <Grid item xs>
                 <Slider
-                  disabled = {true}
+                  // disabled={true}
                   value={report.affected.amount || 1}
                   aria-labelledby="continuous-slider"
                   min={1}
                 />
               </Grid>
-              <Grid item>
-                <StyledFontAwesomeIcon icon={faIndustry} />
-              </Grid>
-            </Grid>
-            <Grid container spacing={2} alignItems="center" direction="row">
-              <Grid item>
-                <Typography variant="body2">One</Typography>
-              </Grid>
-              <Grid item xs />
-              <Grid item>
-                <Typography variant="body2">Whole factory</Typography>
-              </Grid>
             </Grid>
           </Grid>
           <br />
-            <Typography >
-              {report.affected.more}
-            </Typography>
-            </CardContent>
-          </Card>
-          <p></p>
-          <Card>
-            <CardHeader
-            action={
-              <IconButton color="primary" aria-label="edit scale" href="location">
-              <CreateIcon />
-              </IconButton>
-            }
-            title = {"Location:  " + (report.location.name || "")}
-          />
-          </Card>
-          <p></p>
-          <Card>
-            <CardHeader
-            action={
-              <IconButton color="primary" aria-label="edit info" href="/more-info">
-              <CreateIcon />
-            </IconButton>
-          }
-          title={"More information"}
-        />
-        <CardContent>
-          <Typography>
-            {report.moreInfo.name || ""}
-          </Typography>
+          <Typography>{report.affected.more}</Typography>
         </CardContent>
       </Card>
+      <CardContainer
+        title={
+          <Typography variant="body1">
+            <Bold>Location: </Bold>
+            {report.location.name}
+          </Typography>
+        }
+        history={history}
+        linkTo={PageLinks.LOCATION}
+      />
+      <CardContainer
+        title={
+          <Typography variant="body1">
+            <Bold>More information</Bold>
+          </Typography>
+        }
+        content={<Content variant="body2">{report.moreInfo.name}</Content>}
+        history={history}
+        linkTo={PageLinks.MORE_INFO}
+      />
       <ActionButtons
         previousProps={{ disabled: false }}
         nextProps={{
@@ -136,15 +163,17 @@ const Confirmation = ({report}) => {
   );
 };
 
-export default connect(
-  state => ({
-    report: state.report
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        saveReport
-      },
-      dispatch
-    )
-)(Confirmation);
+export default withRouter(
+  connect(
+    state => ({
+      report: state.report
+    }),
+    dispatch =>
+      bindActionCreators(
+        {
+          saveReport
+        },
+        dispatch
+      )
+  )(Confirmation)
+);
