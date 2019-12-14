@@ -25,12 +25,21 @@ export const Pages = {
   THANK_YOU: "App name"
 };
 
+export const PageLinks = {
+  PROBLEM: "/",
+  WORKERS_AFFECTED: "/workers-affected",
+  LOCATION: "/location",
+  MORE_INFO: "/more-info",
+  CONFIRMATION_SCREEN: "/confirmation",
+  THANK_YOU: "/thank-you"
+};
+
 // reducers
 
 const initialState = {
   page: Pages.PROBLEM,
   finishedPages: [],
-  report: {}
+  report: { problem:{},location:{},affected:{},moreInfo:{} } 
 };
 
 export default function semsaiApp(state = initialState, action) {

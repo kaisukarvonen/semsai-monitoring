@@ -12,9 +12,20 @@ import {
   CardHeader,
   CardContent,
   Typography,
-  IconButton
+  IconButton,
+  Grid,
+  Slider
 } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
+import { PersonOutlined } from "@material-ui/icons";
+import { faIndustry } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
+
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  color: ${props => props.theme.palette.primary.main};
+  font-size: 18px;
+`;
 
 const Confirmation = ({report}) => {
   return (
@@ -30,11 +41,11 @@ const Confirmation = ({report}) => {
               <CreateIcon />
               </IconButton>
             }
-            title ="Problem:"
+            title ={"Problem:" + (report.problem.name || "")}
           />
           <CardContent>
             <Typography >
-              {}
+              {report.problem.info}
             </Typography>
             </CardContent>
           </Card>
@@ -48,6 +59,40 @@ const Confirmation = ({report}) => {
             }
             title = "Scale:"
           />
+          <CardContent>
+          <br />
+          <Grid container spacing={2} alignItems="center">
+            <Grid container spacing={2} alignItems="center" direction="row">
+              <Grid item>
+                <PersonOutlined color="primary" />
+              </Grid>
+              <Grid item xs>
+                <Slider
+                  disabled = {true}
+                  value={report.affected.amount || 1}
+                  aria-labelledby="continuous-slider"
+                  min={1}
+                />
+              </Grid>
+              <Grid item>
+                <StyledFontAwesomeIcon icon={faIndustry} />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center" direction="row">
+              <Grid item>
+                <Typography variant="body2">One</Typography>
+              </Grid>
+              <Grid item xs />
+              <Grid item>
+                <Typography variant="body2">Whole factory</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <br />
+            <Typography >
+              {report.affected.more}
+            </Typography>
+            </CardContent>
           </Card>
           <p></p>
           <Card>
@@ -57,13 +102,8 @@ const Confirmation = ({report}) => {
               <CreateIcon />
               </IconButton>
             }
-            title = {"Location:  "+ report.location.name}
+            title = {"Location:  " + (report.location.name || "")}
           />
-          <CardContent>
-            <Typography >
-              Text
-            </Typography>
-            </CardContent>
           </Card>
           <p></p>
           <Card>
@@ -73,10 +113,12 @@ const Confirmation = ({report}) => {
               <CreateIcon />
             </IconButton>
           }
-          title="More information:"
+          title={"More information"}
         />
         <CardContent>
-          <Typography>Text</Typography>
+          <Typography>
+            {report.moreInfo.name || ""}
+          </Typography>
         </CardContent>
       </Card>
       <ActionButtons
