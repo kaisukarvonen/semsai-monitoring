@@ -2,6 +2,7 @@
 
 const CHANGE_PAGE = "CHANGE_PAGE";
 const SAVE_REPORT = "SAVE_REPORT";
+const CHANGE_CAME_FROM_CONFIRMATION = "CHANGE_CAME_FROM_CONFIRMATION";
 
 export const changePage = (page, pageFinished) => ({
   type: CHANGE_PAGE,
@@ -12,6 +13,11 @@ export const changePage = (page, pageFinished) => ({
 export const saveReport = report => ({
   type: SAVE_REPORT,
   report
+});
+
+export const changeCameFromConfirmation = value => ({
+  type: CHANGE_CAME_FROM_CONFIRMATION,
+  value
 });
 
 // constants
@@ -39,7 +45,13 @@ export const PageLinks = {
 const initialState = {
   page: Pages.PROBLEM,
   finishedPages: [],
-  report: { problem:{},location:{},affected:{},moreInfo:{} } 
+  report: {
+    problem: {},
+    location: {},
+    affected: {},
+    moreInfo: {}
+  },
+  cameFromConfirmation: false
 };
 
 export default function semsaiApp(state = initialState, action) {
@@ -52,6 +64,8 @@ export default function semsaiApp(state = initialState, action) {
       return { ...state, page: action.page, finishedPages: updatedPages };
     case SAVE_REPORT:
       return { ...state, report: action.report };
+    case CHANGE_CAME_FROM_CONFIRMATION:
+      return { ...state, cameFromConfirmation: action.value };
     default:
       return state;
   }

@@ -29,7 +29,7 @@ const WorkersAffected = ({ report, saveReport }) => {
     saveReport({ ...report, affected: { ...report.affected, [key]: val } });
   };
   const affected = report.affected || {};
-
+  
   return (
     <Container>
       <Grid item>
