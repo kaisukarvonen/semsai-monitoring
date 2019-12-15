@@ -121,7 +121,7 @@ const Confirmation = ({
         <CardContainer
           title={
             <Typography variant="body1">
-              <Bold>Location: </Bold>
+              <Bold>Factory: </Bold>
               {report.location.name}
             </Typography>
           }
