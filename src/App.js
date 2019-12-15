@@ -13,7 +13,7 @@ import {
 } from "@material-ui/styles";
 import { ThemeProvider } from "styled-components";
 import { Typography } from "@material-ui/core";
-import semsaiApp, { changePage } from "./store";
+import semsaiApp, { changePage, Pages } from "./store";
 import { Provider as StoreProvider, connect } from "react-redux";
 import { createStore, bindActionCreators } from "redux";
 import { Menu, Close, Help } from "@material-ui/icons";
@@ -98,8 +98,12 @@ const HeaderComponent = ({ page }) => (
     <Menu color="action" />
     <StyledTypography variant="h6">{page}</StyledTypography>
     <div>
-      <Help color="secondary" />
-      <StyledClose />
+      {page !== Pages.THANK_YOU && (
+        <>
+          <Help color="secondary" />
+          <StyledClose />
+        </>
+      )}
     </div>
   </StyledHeader>
 );
